@@ -1,0 +1,183 @@
+<html>
+<head>
+<script src="jquery-1.12.0.min.js" ></script>
+	<style>
+
+	body{
+	  background-color:#6B828E;
+	}
+
+	.flex-container {
+	  width:200px;
+	  display: flex;
+	  border: 1px solid white;
+	}
+
+  	.flex-item {
+	  background: #5A6E77;
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	  padding-left: 5px;
+	  width:100%;
+	  height: 40px;
+	  line-height: 50px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 3em;
+	  text-align: center;
+	  color:#979797;
+	}
+
+	.separator{
+		border-right: 1px solid #979797;
+	    float: right;
+	    position: absolute;
+	    display: inline-block;
+	    height: 40px;
+	    opacity: 0.4;
+	}
+
+	.separator-first{
+	   	padding-right: 5px;
+	}
+
+	.separator-middle{
+	   	padding-left: 5px;
+	   	padding-right: 5px;
+	}
+
+	.password-input{
+		float:left;
+		width:100%;
+		height:100%;
+		background: #5A6E77;
+		border:none;
+		text-align:center;	
+		color: #979797;
+		font-size:16px;
+		outline: none;
+	}
+
+	.password-input:focus{
+		border-bottom:1px solid #6FC5C5;
+	}
+
+	.btn-validate {
+	    background-color: #4CAF50; /* Green */
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	}
+
+	.validate-container{
+		margin-top:20px;
+		margin-left:5px;
+	}
+
+</style>
+	
+</head>
+<body>
+<div class="flex-container">
+  <div class="flex-item separator-middle">
+  	<input class="password-input passw-1" type="text"/>
+  	<div class="separator separator-first"></div>
+  </div>
+  <div class="flex-item separator-middle">
+  	<input class="password-input passw-2" type="text" />
+  	<div class="separator separator-first"></div>
+  </div>
+  <div class="flex-item separator-middle">
+  	<input class="password-input passw-3" type="text" />
+  	<div class="separator separator-first"></div>
+  </div>
+  <div class="flex-item separator-middle">
+  	<input class="password-input passw-4" type="text" />
+  </div>
+</div>
+<div class="validate-container">
+	<button class="btn-validate" onclick="validatePassword()">Validar Password</button>
+</div>
+</body>
+</html>
+
+<script>
+
+	var password=[];
+
+     jQuery(document).ready(function(){
+       
+     	$( ".passw-1" ).keypress(function(e) {
+     		var c = String.fromCharCode(e.which);
+     		password[0]=c;
+		});
+
+     	$( ".passw-1" ).keyup(function(e) {
+     		if (e.keyCode===8){
+   		   	   password[0]='';
+   		   	   return;
+   		   }
+		   $(".passw-1").val("*");
+		   $(".passw-2").focus();
+		});
+
+		$( ".passw-2" ).keypress(function(e) {
+     		var c = String.fromCharCode(e.which);
+     		password[1]=c;
+		});
+
+     	$( ".passw-2" ).keyup(function(e) {
+     		if (e.keyCode===8){
+   		   	   $(".passw-1").focus();
+   		   	   password[1]='';
+   		   	   return;
+   		   }
+		   $(".passw-2").val("*");
+		   $(".passw-3").focus();
+		});
+
+		$( ".passw-3" ).keypress(function(e) {
+     		var c = String.fromCharCode(e.which);
+     		password[2]=c;
+		});
+
+     	$( ".passw-3" ).keyup(function(e) {
+     		if (e.keyCode===8){
+   		   	   $(".passw-2").focus();
+   		   	   password[2]='';
+   		   	   return;
+   		   }
+		   $(".passw-3").val("*");
+		   $(".passw-4").focus();
+		});
+
+     	$( ".passw-4" ).keypress(function(e) {
+     		var c = String.fromCharCode(e.which);
+     		password[3]=c;
+		});
+
+     	$( ".passw-4" ).keyup(function(e) {
+   		   if (e.keyCode===8){
+   		   	   $(".passw-3").focus();
+   		   	   password[3]='';
+   		   	   return;
+   		   }
+		   $(".passw-4").val("*");
+		});
+
+
+
+     });  
+
+	function validatePassword(){
+		if ( (password[0]!=='' && password[1]!=='' && password[2]!=='' && password[3]!=='') && (password.length >4))
+			alert("Password correcto");
+		else
+			alert("Password incorrecto");
+	}
+
+</script>
